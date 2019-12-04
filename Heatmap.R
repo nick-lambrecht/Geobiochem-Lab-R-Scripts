@@ -3,6 +3,7 @@ library(gplots)
 library(RColorBrewer)
 #Set wd
 #Read data in; my file was a .csv
+#Use my data set as practice. Practice file is located in the repository for download
 FeGenie <- read.csv("../fegenie_output/FeGenie-heatmap-data.csv")
 
 #Store rownames as an object
