@@ -4,10 +4,13 @@ library(RColorBrewer)
 #Set wd
 #Read data in; my file was a .csv
 FeGenie <- read.csv("../fegenie_output/FeGenie-heatmap-data.csv")
+
 #Store rownames as an object
 rnames <- FeGenie[,1]
+
 #convert data frame into a matrix
 FeG_data <- data.matrix(FeGenie[,2:ncol(FeGenie)])
+
 #add row names back in
 rownames(FeG_data) <- rnames
 
@@ -17,7 +20,9 @@ my_palette <- colorRampPalette(c("lightgray", "yellow", "red"))(n = 299)
 col_breaks = c(seq(0,0.09,length=100),  # for lightgray
                seq(0.1,0.5,length=100),           # for yellow
                seq(0.51,1.20,length=100))             # for red
+
 #Saving heatmap as a PDF file
+# MUST finish the code by entering the dev.off() command at the bottom. Otherwise the pdf won't publish to your working directory
 pdf("../fegenie_output/heatmap.pdf",width = 10, height = 10, pointsize = 10)
 
 heatmap.2(FeG_data,
@@ -33,6 +38,7 @@ heatmap.2(FeG_data,
           srtCol = 45,
           Colv="NA",
           Rowv = "NULL")
+
 dev.off()
           
     
