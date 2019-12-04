@@ -1,4 +1,5 @@
 #I followed this tutorial: https://sebastianraschka.com/Articles/heatmaps_in_r.html
+#The goal of this code was to create a heatmap to show the distribution of various Fe gene (and Fe gene families) across many metagenomic bins.
 library(gplots)
 library(RColorBrewer)
 #Set wd
