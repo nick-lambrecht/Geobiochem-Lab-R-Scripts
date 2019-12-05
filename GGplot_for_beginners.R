@@ -1,4 +1,8 @@
-#set wd
+#This script will take you through how to modify plots made with the ggplot2 package
+#This script is not an exhaustive list of what you can do with ggplot, but this should get you started!
+#The example file to use with this script is title 'R_Example_meeting'
+
+#set working directory
 #open libraries
 library(ggplot2)
 
@@ -50,7 +54,7 @@ P1 = ggplot(R_Example_meeting, aes( ,Depth)) +
   labs(title="Nick's pretty graph") + theme(plot.title = element_text(hjust = 0.5))
 P1
 
-# Let's change the background theme to white because I want to
+# Let's change the background theme to white
 P1 = ggplot(R_Example_meeting, aes( ,Depth)) +
   geom_path(aes(x = DIC_mM)) +
   geom_point(aes(x = Temp)) +
@@ -73,6 +77,7 @@ P1
 
 # Let's add some color to our variables so we can set them apart
 # Depending on where you use 'color' and the value, you get different outcomes
+# try adding ,color=Date inside the aes()...see how it changes the color
 P1 = ggplot(R_Example_meeting, aes( ,y=Depth)) +
   geom_point(aes(x = DIC_mM), color='steelblue') +
   geom_point(aes(x = Temp), color='thistle') +
@@ -105,7 +110,7 @@ P1 = ggplot(R_Example_meeting, aes(x=,y=Depth)) +
 P1
 
 # Let's say I want to add a line connecting my dots
-# Use the geom_path or geom_line command. See notes about the differences and cautions
+# Use the geom_path or geom_line command
 # I also changed the points for DIC to be colored by month and made the line color grey
 P1 = ggplot(R_Example_meeting, aes(x=,y=Depth)) +
   geom_point(aes(x = DIC_mM, color=Date)) +
@@ -129,7 +134,6 @@ P1 = ggplot(R_Example_meeting, aes(x=,y=Depth)) +
   theme(plot.title = element_text(hjust = 0.5))
 P1
 
-# I'm bored with normal lines. Let's change it up.
 # Let's change all the lines to a different style
 P1 = ggplot(R_Example_meeting, aes(x=,y=Depth)) +
   geom_point(aes(x = DIC_mM, color=Date)) +
@@ -141,7 +145,7 @@ P1 = ggplot(R_Example_meeting, aes(x=,y=Depth)) +
   theme(plot.title = element_text(hjust = 0.5))
 P1 
 
-# I hate dots. Let's get new symbols
+# Let's get new symbols
 # Let's change the symbols according to the sampling date for DIC and to squares for Temp
 P1 = ggplot(R_Example_meeting, aes(x=,y=Depth)) +
   geom_point(aes(x = DIC_mM, color=Date, shape= Date)) +
@@ -174,6 +178,7 @@ Modified <- P1 + theme(plot.title = element_text(size=20, color="hotpink2", fami
            axis.text.y = element_text(size = 12),
            plot.caption = element_text(size = 10))
 Modified
+
 # To change the order of the axis legend
 Modified + scale_color_discrete(breaks=c("April_2017", "May_2017", "July_2017", "September_2017"))
 
@@ -182,11 +187,13 @@ CoolPlot = Modified + scale_color_manual(name="Field Campaign", labels=c("April 
           values=c("red", "orange", "green", "purple")) +
           scale_shape_manual(name="Field Campaign", labels=c("April '17", "July '17", "May '17", "September '17"), values=c("April_2017"="circle", "July_2017"="triangle", "May_2017"="square", "September_2017"="plus"))
 CoolPlot + scale_col
-# FACETING!! 
+
+### FACETING (see also facet_grid tutorial)
 # Let's group our data by a specific function. In our case, let's do by date
 # Facet Wrap
 P2 = CoolPlot + facet_wrap(.~Date) 
 P2
+
 # Facet Grid
 # If you have two discreet variables (e.g. Sampling Month and Year), you could make a grid like facet_grid(Sampling Month ~ Year)
 # This would group Sampling month in rows and Year in columns
@@ -196,6 +203,7 @@ P3
 # Modify labels when facetting
 # First, create a character vector
 Months <- c('April_2017'="April", 'July_2017'="July", 'May_2017'="May", 'September_2017'="September")
+
 # Second, Use vector as a labeler
 P2 = CoolPlot + facet_wrap(.~Date, labeller = as_labeller(Months)) + labs(subtitle="Brownie Lake - 2017")
 P2
@@ -206,7 +214,7 @@ P4 = P2 + theme(panel.spacing = unit(2, "lines"), axis.text.y.left = element_tex
                 strip.text = element_text(color="black", face = "bold", size = 15), legend.position = "none")
 P4
 
-# Saving a graph using the Export button
+# Save the graph using the export button OR use ggsave (see facet grid tutorial on that)
 
 #####
 
