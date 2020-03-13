@@ -7,4 +7,4 @@ The purpose of this repository is to provide R scripts (and their corresponding 
 
 <b>NOTE: R code in this GitHub is specific to the research performed in this lab. Therefore the scripts presented here will most certainly have to be modified to fit the needs of <i>your</i> research and <i>your</i> scientific question(s) trying to be answered.</b>
 
-Please contact nlambrec@iastate.edu with any questions pertaining to R code on this repository.
+Please contact lambrecht.nicholas92@gmail.com with any questions pertaining to R code on this repository.
